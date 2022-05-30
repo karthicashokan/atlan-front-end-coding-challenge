@@ -102,3 +102,11 @@ dist
 
 # TernJS port file
 .tern-port
+
+# Node
+package-lock.json
+
+# Other Junk
+/idea
+/.idea
+.idea
