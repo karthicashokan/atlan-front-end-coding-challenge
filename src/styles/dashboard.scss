@@ -15,8 +15,7 @@ $dashboard-sidebar-width: 160px;
     width: $dashboard-sidebar-width;
     border-right: $border-line;
     height: 100%;
-    padding: $small-spacing;
-    padding-top: $medium-spacing;
+    padding: $small-spacing 0;
   }
   .dashboard-content {
     // Vertical flex positioning for top and bottom sections

@@ -4,6 +4,7 @@ $secondary-color: #808080;
 
 $button-height: 30px;
 $button-color: $primary-color;
+$button-color-hover: darkorange;
 
 $border-line: 1px dashed $secondary-color;
 
@@ -39,15 +40,44 @@ $small-spacing: 10px;
   cursor: pointer;
 
   &:active, &:hover {
-    background: darkorange;
+    background: $button-color-hover;
   }
 }
 
-@mixin code-style ($background-color: black, $text-color: white) {
+@mixin code-style ($background-color: $background-color, $text-color: white) {
   background: $background-color;
   font-family: ui-monospace, Menlo, Monaco, Consolas, monospace;
   font-size: 0.8em;
   color: $text-color;
   padding: $small-spacing;
   height: calc(100% - 2 * $small-spacing);
+  width: calc(100% - 2 * $small-spacing);
+  resize: none;
+}
+
+@mixin list-style {
+  list-style: none;
+  text-decoration: none;
+  padding: 0;
+  margin: 0;
+
+  li {
+    font-size: 1em;
+    line-height: 2em;
+    border-top: $border-line;
+    text-indent: $small-spacing;
+
+    &:last-child {
+      border-bottom: $border-line;
+    }
+
+    &.active {
+      background-color: $button-color;
+    }
+
+    &:hover {
+      background-color: $button-color-hover;
+      color: white;
+    }
+  }
 }
