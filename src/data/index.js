@@ -8,6 +8,4 @@ const data = {
     products
 }
 
-console.log(data);
-
 export default data;

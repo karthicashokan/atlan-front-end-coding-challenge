@@ -63,7 +63,15 @@ class SQLClient extends React.Component {
      * Clears query and output
      */
     clear = () => {
-        this.queryInput.current.value = '';
+        this.setQuery('');
+    }
+
+    /**
+     * Sets the query to the value provided
+     * @param text
+     */
+    setQuery = (text) => {
+        this.queryInput.current.value = text;
     }
 
     /**
@@ -71,11 +79,13 @@ class SQLClient extends React.Component {
      * @param {number} index
      */
     onClickExistingQuery = (index) => {
+        this.setState({ activeQuery: index });
         // If user clicks on `New Query` (always the first element), then clear state
         if (index === DEFAULT_QUERY_INDEX) {
             this.clear();
+        } else {
+            this.setQuery(this.history[index]?.query || DEFAULT_QUERY)
         }
-        this.setState({ activeQuery: index });
     }
 
     /**
