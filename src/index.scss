@@ -82,6 +82,12 @@ body {
         }
       }
     }
+  } // .sql-client styling ends here
+
+  .json-to-table {
+    th, td {
+      border: 1px solid white;
+    }
   }
 
-}
+} // .App styling ends here
