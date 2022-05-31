@@ -5,6 +5,7 @@ import TABLES from '../data';
 import { getTableNameFromSQLQuery as getTableName, capitalize } from '../utils';
 
 const DEFAULT_OUTPUT = 'Run query to see output...';
+const DEFAULT_QUERY_INDEX = -1;
 
 /**
  * Renders a SQLClient dashboard where SQL queries can be run
@@ -20,7 +21,7 @@ class SQLClient extends React.Component {
         this.state = {
             opCount: 0,
             loading: false,
-            activeQuery: -1,
+            activeQuery: DEFAULT_QUERY_INDEX,
         };
 
         // Refs
@@ -41,8 +42,8 @@ class SQLClient extends React.Component {
         }
         const result = tableName;//TABLES[tableName];
         // pushHistory
-        this.pushHistory(query, result, tableName);
-        this.updateOutput(result);
+        const queryIndex = this.pushHistory(query, result, tableName);
+        this.onClickExistingQuery(queryIndex);
     }
 
     clear = () => {
@@ -51,15 +52,26 @@ class SQLClient extends React.Component {
     }
 
     onClickExistingQuery = (index) => {
+        if (index === DEFAULT_QUERY_INDEX) {
+            this.clear();
+        }
         this.setState({ activeQuery: index });
     }
 
     pushHistory = (query, result, tableName) => {
+        const { activeQuery } = this.state;
         const label = `${capitalize(tableName)} select`;
-        this.history.unshift(
-            { query, result, label }
-        )
+        const queryObject = { query, result, label };
+        let queryIndex;
+        if (activeQuery === DEFAULT_QUERY_INDEX) {
+            this.history.unshift(queryObject);
+            queryIndex = 0;
+        } else {
+            this.history[activeQuery] = queryObject;
+            queryIndex = activeQuery;
+        }
         this.setState({ opCount: this.state.opCount + 1 });
+        return queryIndex;
     }
 
     updateOutput = (text) => {
@@ -71,8 +83,8 @@ class SQLClient extends React.Component {
         return (
             <ul className="list">
                 <li
-                    className={classNames({ active: activeQuery === -1 })}
-                    onClick={() => { this.onClickExistingQuery(-1) }}
+                    className={classNames({ active: activeQuery === DEFAULT_QUERY_INDEX })}
+                    onClick={() => { this.onClickExistingQuery(DEFAULT_QUERY_INDEX) }}
                 >New Query</li>
                 {this.history.map((element, index) => (
                     <li
@@ -86,6 +98,12 @@ class SQLClient extends React.Component {
     }
 
     render() {
+        const { activeQuery } = this.state;
+        const activeQueryIsPresent = activeQuery !== DEFAULT_QUERY_INDEX;
+        const queryObject = activeQueryIsPresent ? this.history[activeQuery] : {
+            query: null,
+            output: null,
+        }
         const sidebarContent = this.renderSidebarContent();
         const topContent = (
             <div className="query-with-controls">
@@ -97,12 +115,13 @@ class SQLClient extends React.Component {
                     ref={this.queryInput}
                     className="code-style"
                     placeholder="Enter SQL query..."
+                    defaultValue={queryObject.query}
                 />
             </div>
         );
         const bottomContent = (
             <div className="code-style" ref={this.queryOutput}>
-                {DEFAULT_OUTPUT}
+                {queryObject.output || DEFAULT_OUTPUT}
             </div>
         );
         return (
