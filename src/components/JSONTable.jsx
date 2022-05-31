@@ -6,7 +6,9 @@ import PropTypes from "prop-types";
 class JSONTable extends React.Component {
     render() {
         const { jsonList } = this.props;
-        const columns = Object.keys(jsonList[0]);
+        // Get the column names from the first entry
+        // Filter out any complex data types
+        const columns = Object.keys(jsonList[0]).filter(column => typeof jsonList[0][column] !== 'object');
         return (
             <table className="json-to-table">
                 <tbody>
