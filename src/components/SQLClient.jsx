@@ -1,5 +1,6 @@
 import React from 'react'
 import Dashboard from './Dashboard';
+import JSONTable from './JSONTable';
 import classNames from 'classnames';
 import TABLES from '../data';
 import { getTableNameFromSQLQuery as getTableName, capitalize } from '../utils';
@@ -40,10 +41,10 @@ class SQLClient extends React.Component {
             this.updateOutput('Incorrect table name');
             return;
         }
-        const result = tableName;//TABLES[tableName];
+        const result = TABLES[tableName];
         // pushHistory
         const queryIndex = this.pushHistory(query, result, tableName);
-        this.onClickExistingQuery(queryIndex);
+        this.setState({ activeQuery: queryIndex });
     }
 
     clear = () => {
@@ -104,6 +105,7 @@ class SQLClient extends React.Component {
             query: null,
             output: null,
         }
+        console.log('queryObject', queryObject);
         const sidebarContent = this.renderSidebarContent();
         const topContent = (
             <div className="query-with-controls">
@@ -121,7 +123,7 @@ class SQLClient extends React.Component {
         );
         const bottomContent = (
             <div className="code-style" ref={this.queryOutput}>
-                {queryObject.output || DEFAULT_OUTPUT}
+                <JSONTable jsonList={queryObject.result || [{ test: 'test' }] }/>
             </div>
         );
         return (
