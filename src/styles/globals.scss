@@ -1,0 +1,53 @@
+$primary-color: orange;
+$background-color: #1D1D1D;
+$secondary-color: #808080;
+
+$button-height: 30px;
+$button-color: $primary-color;
+
+$border-line: 1px dashed $secondary-color;
+
+$medium-spacing: 15px;
+$large-spacing: 20px;
+$small-spacing: 10px;
+
+@mixin title-style () {
+  font-weight: bold;
+  font-size: 2em;
+  line-height: 2.5em;
+}
+
+@mixin subtitle-style () {
+  font-weight: bold;
+  font-size: 1em;
+  line-height: 1.5em;
+}
+
+@mixin highlight-style () {
+  color: $primary-color;
+}
+
+@mixin button-style ($button-size) {
+  background: $button-color;
+  height: $button-size;
+  line-height: $button-size;
+  width: 2 * $button-size;
+  border-radius: 0.25 * $button-size;
+  text-align: center;
+  color: white;
+  font-size: 0.8em;
+  cursor: pointer;
+
+  &:active, &:hover {
+    background: darkorange;
+  }
+}
+
+@mixin code-style ($background-color: black, $text-color: white) {
+  background: $background-color;
+  font-family: ui-monospace, Menlo, Monaco, Consolas, monospace;
+  font-size: 0.8em;
+  color: $text-color;
+  padding: $small-spacing;
+  height: calc(100% - 2 * $small-spacing);
+}
