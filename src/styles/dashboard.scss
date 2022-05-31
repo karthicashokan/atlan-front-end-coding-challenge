@@ -16,6 +16,10 @@ $dashboard-sidebar-width: 160px;
     border-right: $border-line;
     height: 100%;
     padding: $small-spacing 0;
+
+    @media only screen and (max-width: $mobile-max-width) {
+      display: none;
+    }
   }
 
   .dashboard-content {
@@ -24,11 +28,15 @@ $dashboard-sidebar-width: 160px;
     flex-direction: column;
     width: calc(100% - $dashboard-sidebar-width);
 
+    @media only screen and (max-width: $mobile-max-width) {
+      width: 100%;
+    }
+
     .content-section {
       flex-grow: 1;
       padding: $medium-spacing;
       height: 50%;
-      overflow: scroll;
+      overflow: hidden;
       position: relative;
 
       .subtitle {
