@@ -53,6 +53,7 @@ $small-spacing: 10px;
   height: calc(100% - 2 * $small-spacing);
   width: calc(100% - 2 * $small-spacing);
   resize: none;
+  overflow: scroll;
 }
 
 @mixin list-style {
