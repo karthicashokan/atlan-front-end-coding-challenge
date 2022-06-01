@@ -3,7 +3,7 @@
  * @param str
  * @returns {*|string}
  */
-export const capitalize = (str) => str && str[0].toUpperCase() + str.slice(1);
+export const capitalize = (str) => str && str[0].toUpperCase() + str.slice(1).toLowerCase();
 
 /**
  * Returns the table name from a SQL query
