@@ -4,6 +4,8 @@
 
 ### Hosted at: https://karthic-atlan-coding-challenge.netlify.app/
 
+Sample query to run `select * from customers;`
+
 ----------
 
 ### 1. Overview: How I went about completing this challenge
@@ -58,6 +60,8 @@ I used Chrome Dev Tool's `Performance Insights` to measure perceived load time. 
 
 
 ### 6. Dealing with large outputs
+- The application was able to successfully load a large number of rows, using data from https://github.com/graphql-compose/graphql-compose-examples/blob/master/examples/northwind/data/json/orders.json
+- Sample query to run `select * from orders`;
 
 |  Query with large output |   Query with large output with scrolling |
 |---|---|
