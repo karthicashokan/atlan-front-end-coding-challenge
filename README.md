@@ -49,6 +49,7 @@ I used Chrome Dev Tool's `Performance Insights` to measure perceived load time. 
 
 - I was able to avoid loading any heaving external assets (images, etc), but in a real product this may not be always possible
 - My test application does have to load JSON files for the dummmy outputs, but in a real product we will be querying for this on demand
+- Though the task didn't require for mobile-optimization, I made sure the application was responsive and I did very basic mobile optimizations (removed the sidebar to allow for more screen space for the query and output). Given more time, I could definitely make it mobile optimized.
 
 
 
