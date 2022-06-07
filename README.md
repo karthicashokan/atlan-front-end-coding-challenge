@@ -35,7 +35,7 @@ Sample query to run `select * from customers;`
 I used Chrome Dev Tool's `Performance Insights` to measure perceived load time. The two metrics I looked are are: First Contentful Paint (FCP) and Largest Contentful Paint (LCP).
 - FCP is when the browser renders the first bit of content from the DOM, providing the first feedback to the user that the page is actually loading.
 - LCP is when the browser renders the largest visual pieces on the DOM, in our case this would be the dashboard layout, buttons, etc.
-- LCP < 2.5 seconds is absolutely must for good user experience. Less than 1 second leads to great user experience.
+- LCP < 2.5 seconds is absolutely must for a good user experience. Less than 1 second leads to great user experience.
 
 
 |   |   |
